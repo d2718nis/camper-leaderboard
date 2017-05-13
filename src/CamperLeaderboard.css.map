@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,kBAAmB;EACjB,UAAU,EAAE,MAAM",
+"sources": ["CamperLeaderboard.scss"],
+"names": [],
+"file": "CamperLeaderboard.css"
+}
