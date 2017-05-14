@@ -5,7 +5,7 @@ class CamperLeaderboard extends Component {
   render() {
     return (
       <div className="CamperLeaderboard">
-        <h1>Campler Leaderboard</h1>
+        <h1>Camper Leaderboard</h1>
       </div>
     );
   }
