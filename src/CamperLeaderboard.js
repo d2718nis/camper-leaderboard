@@ -11,39 +11,54 @@ class CamperLeaderboard extends Component {
         </div>
       );
     } else {
-      var users = this.props.usersArray;
       return (
         <div className="CamperLeaderboard">
           <h1>Camper Leaderboard</h1>
-          <table>
-            <tbody>
-              <tr>
-                <td>Num</td>
-                <td>Image</td>
-                <td>Name</td>
-                <td>All time</td>
-                <td>Recent</td>
-                <td>Last update</td>
-              </tr>
-              {Array(users.length).fill(null).map((val, i) => (
-                <tr key={'row' + i}>
-                  <td>{i}</td>
-                  <td><img alt={users[i].username + ' profile Image'} width="30" src={users[i].img} /></td>
-                  <td>
-                    <a href={'https://www.freecodecamp.com/' + users[i].username} target="_blank">
-                      {users[i].username}
-                    </a>
-                  </td>
-                  <td>{users[i].alltime}</td>
-                  <td>{users[i].recent}</td>
-                  <td>{users[i].lastUpdate}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <LeaderboardTable usersArray={this.props.usersArray} />
         </div>
       );
     }
+  }
+}
+
+class LeaderboardTable extends Component {
+  render() {
+    return (
+      <table>
+        <tbody>
+          <tr>
+            <td>Num</td>
+            <td>Image</td>
+            <td>Name</td>
+            <td>All time</td>
+            <td>Recent</td>
+            <td>Last update</td>
+          </tr>
+          {Array(this.props.usersArray.length).fill(null).map((val, i) => (
+            <LeaderboardRow key={'row' + i} rowNum={i+1} userInfo={this.props.usersArray[i]} />
+          ))}
+        </tbody>
+      </table>
+    );
+  }
+}
+
+class LeaderboardRow extends Component {
+  render() {
+    return(
+      <tr>
+        <td>{this.props.rowNum}</td>
+        <td><img alt={this.props.userInfo.username + ' profile Image'} width="30" src={this.props.userInfo.img} /></td>
+        <td>
+          <a href={'https://www.freecodecamp.com/' + this.props.userInfo.username} target="_blank">
+            {this.props.userInfo.username}
+          </a>
+        </td>
+        <td>{this.props.userInfo.alltime}</td>
+        <td>{this.props.userInfo.recent}</td>
+        <td>{this.props.userInfo.lastUpdate}</td>
+      </tr>
+    );
   }
 }
 
