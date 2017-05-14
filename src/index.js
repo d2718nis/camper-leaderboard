@@ -4,15 +4,14 @@ import CamperLeaderboard from './CamperLeaderboard';
 import './index.css';
 
 getAjax('https://fcctop100.herokuapp.com/api/fccusers/top/recent').then(function(response) {
-  console.log('success');
   ReactDOM.render(
-    <CamperLeaderboard />,
+    <CamperLeaderboard usersArray={response} />,
     document.getElementById('root')
   );
 }, function(err) {
   console.log('Error: ' + err);
   ReactDOM.render(
-    <CamperLeaderboard />,
+    <CamperLeaderboard usersArray={null} />,
     document.getElementById('root')
   );
 });
@@ -23,7 +22,7 @@ function getAjax(resource) {
     xhttp.onreadystatechange = function() {
       if (this.readyState === 4) {
         if (this.status === 200) {
-          resolve(this.responseText);
+          resolve(JSON.parse(this.responseText));
         } else {
           reject(this.statusText);
         }
