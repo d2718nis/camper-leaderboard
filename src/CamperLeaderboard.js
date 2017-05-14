@@ -3,7 +3,7 @@ import './CamperLeaderboard.css';
 
 class CamperLeaderboard extends Component {
   render() {
-    if (this.props.usersArray === null) {
+    if (this.props.usersInfo === null) {
       return (
         <div className="CamperLeaderboard">
           <h1>Camper Leaderboard</h1>
@@ -14,7 +14,7 @@ class CamperLeaderboard extends Component {
       return (
         <div className="CamperLeaderboard">
           <h1>Camper Leaderboard</h1>
-          <LeaderboardTable usersArray={this.props.usersArray} />
+          <LeaderboardTable usersInfo={this.props.usersInfo.allTime} />
         </div>
       );
     }
@@ -36,8 +36,8 @@ class LeaderboardTable extends Component {
           </tr>
         </thead>
         <tbody>
-          {Array(this.props.usersArray.length).fill(null).map((val, i) => (
-            <LeaderboardRow key={'row' + i} rowNum={i+1} userInfo={this.props.usersArray[i]} />
+          {Array(this.props.usersInfo.length).fill(null).map((val, i) => (
+            <LeaderboardRow key={'row' + i} rowNum={i+1} userInfo={this.props.usersInfo[i]} />
           ))}
         </tbody>
       </table>
