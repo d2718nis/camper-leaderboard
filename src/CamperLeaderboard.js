@@ -25,7 +25,7 @@ class LeaderboardTable extends Component {
   render() {
     return (
       <table>
-        <tbody>
+        <thead>
           <tr>
             <td>Num</td>
             <td>Image</td>
@@ -34,6 +34,8 @@ class LeaderboardTable extends Component {
             <td>Recent</td>
             <td>Last update</td>
           </tr>
+        </thead>
+        <tbody>
           {Array(this.props.usersArray.length).fill(null).map((val, i) => (
             <LeaderboardRow key={'row' + i} rowNum={i+1} userInfo={this.props.usersArray[i]} />
           ))}
