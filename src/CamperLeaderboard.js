@@ -35,7 +35,10 @@ class CamperLeaderboard extends Component {
         <div className="CamperLeaderboard">
           <h1>Camper Leaderboard</h1>
           <LeaderboardTable
-            usersInfo={this.state.sortByAllTime ? this.state.leaderboard.allTime : this.state.leaderboard.recent}
+            usersInfo={this.state.sortByAllTime ?
+              this.state.leaderboard.allTime :
+              this.state.leaderboard.recent
+            }
           />
         </div>
       );
@@ -44,6 +47,16 @@ class CamperLeaderboard extends Component {
 }
 
 class LeaderboardTable extends Component {
+  renderRow(i) {
+    return(
+      <LeaderboardRow
+        key={'row' + i}
+        rowNum={i+1}
+        userInfo={this.props.usersInfo[i]}
+      />
+    );
+  }
+
   render() {
     return (
       <table>
@@ -58,9 +71,7 @@ class LeaderboardTable extends Component {
           </tr>
         </thead>
         <tbody>
-          {Array(this.props.usersInfo.length).fill(null).map((val, i) => (
-            <LeaderboardRow key={'row' + i} rowNum={i+1} userInfo={this.props.usersInfo[i]} />
-          ))}
+          {Array(this.props.usersInfo.length).fill(null).map((val, i) => this.renderRow(i))}
         </tbody>
       </table>
     );
@@ -72,7 +83,9 @@ class LeaderboardRow extends Component {
     return(
       <tr>
         <td>{this.props.rowNum}</td>
-        <td><img alt={this.props.userInfo.username + ' profile Image'} width="30" src={this.props.userInfo.img} /></td>
+        <td>
+          <img alt={this.props.userInfo.username + ' profile Image'} width="30" src={this.props.userInfo.img} />
+        </td>
         <td>
           <a href={'https://www.freecodecamp.com/' + this.props.userInfo.username} target="_blank">
             {this.props.userInfo.username}
