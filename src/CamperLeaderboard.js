@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import './CamperLeaderboard.css';
 
 class CamperLeaderboard extends Component {
+  constructor() {
+    super();
+    this.state = {
+      leaderboard: {
+        allTime: null,
+        recent: null
+      }
+    };
+  }
+
   render() {
     if (this.props.usersInfo === null) {
       return (
