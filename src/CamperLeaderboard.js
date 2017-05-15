@@ -50,6 +50,7 @@ class CamperLeaderboard extends Component {
               this.state.leaderboard.allTime :
               this.state.leaderboard.recent
             }
+            sortByAllTime={this.state.sortByAllTime}
           />
         </div>
       );
@@ -73,16 +74,16 @@ class LeaderboardTable extends Component {
       <table>
         <thead>
           <tr>
-            <td>Num</td>
-            <td>Image</td>
+            <td>#</td>
+            <td>Picture</td>
             <td>Name</td>
-            <td>
-              <a href="#" onClick={() => this.props.onClick(true)}>All time</a>
+            <td className={this.props.sortByAllTime ? 'sort-by' : ''}>
+              <a href="#" onClick={() => this.props.onClick(true)}>All time&#8595;</a>
             </td>
-            <td>
-              <a href="#" onClick={() => this.props.onClick(false)}>Recent</a>
+            <td className={this.props.sortByAllTime ? '' : 'sort-by'}>
+              <a href="#" onClick={() => this.props.onClick(false)}>Recent&#8595;</a>
             </td>
-            <td>Last update</td>
+            <td>Last activity</td>
           </tr>
         </thead>
         <tbody>
