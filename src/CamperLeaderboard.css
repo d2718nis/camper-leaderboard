@@ -1,4 +1,31 @@
 .CamperLeaderboard {
   text-align: center; }
+  .CamperLeaderboard table {
+    margin: auto;
+    border-spacing: 0;
+    width: 50vw; }
+    .CamperLeaderboard table td {
+      padding: 5px; }
+    .CamperLeaderboard table a {
+      text-decoration: none; }
+    .CamperLeaderboard table thead {
+      font-weight: bold;
+      background-color: #ccc; }
+      .CamperLeaderboard table thead td:nth-child(1) {
+        width: 10%; }
+      .CamperLeaderboard table thead td:nth-child(2) {
+        width: 10%; }
+      .CamperLeaderboard table thead td:nth-child(3) {
+        width: 30%; }
+      .CamperLeaderboard table thead td:nth-child(4) {
+        width: 15%; }
+      .CamperLeaderboard table thead td:nth-child(5) {
+        width: 15%; }
+      .CamperLeaderboard table thead td:nth-child(6) {
+        width: 20%; }
+    .CamperLeaderboard table tbody tr:nth-child(odd) {
+      background-color: #eee; }
+    .CamperLeaderboard table tbody img {
+      width: 40px; }
 
 /*# sourceMappingURL=CamperLeaderboard.css.map */

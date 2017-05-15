@@ -99,7 +99,7 @@ class LeaderboardRow extends Component {
       <tr>
         <td>{this.props.rowNum}</td>
         <td>
-          <img alt={this.props.userInfo.username + ' profile Image'} width="30" src={this.props.userInfo.img} />
+          <img alt={this.props.userInfo.username + ' profile Image'} src={this.props.userInfo.img} />
         </td>
         <td>
           <a href={'https://www.freecodecamp.com/' + this.props.userInfo.username} target="_blank">
