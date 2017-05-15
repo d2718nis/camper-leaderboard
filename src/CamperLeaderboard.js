@@ -23,7 +23,8 @@ class CamperLeaderboard extends Component {
   }
 
   handleClick(targetAllTime) {
-    if (targetAllTime && !this.state.sortByAllTime || !targetAllTime && this.state.sortByAllTime) {
+    // XOR hack
+    if (targetAllTime !== this.state.sortByAllTime) {
       this.setState({
         sortByAllTime: !this.state.sortByAllTime
       });
