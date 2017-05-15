@@ -22,6 +22,14 @@ class CamperLeaderboard extends Component {
     });
   }
 
+  handleClick(targetAllTime) {
+    if (targetAllTime && !this.state.sortByAllTime || !targetAllTime && this.state.sortByAllTime) {
+      this.setState({
+        sortByAllTime: !this.state.sortByAllTime
+      });
+    }
+  }
+
   render() {
     if (this.props.usersInfo === null) {
       return (
@@ -35,6 +43,7 @@ class CamperLeaderboard extends Component {
         <div className="CamperLeaderboard">
           <h1>Camper Leaderboard</h1>
           <LeaderboardTable
+            onClick={(targetAllTime) => this.handleClick(targetAllTime)}
             usersInfo={this.state.sortByAllTime ?
               this.state.leaderboard.allTime :
               this.state.leaderboard.recent
@@ -65,8 +74,12 @@ class LeaderboardTable extends Component {
             <td>Num</td>
             <td>Image</td>
             <td>Name</td>
-            <td>All time</td>
-            <td>Recent</td>
+            <td>
+              <a href="#" onClick={() => this.props.onClick(true)}>All time</a>
+            </td>
+            <td>
+              <a href="#" onClick={() => this.props.onClick(false)}>Recent</a>
+            </td>
             <td>Last update</td>
           </tr>
         </thead>
