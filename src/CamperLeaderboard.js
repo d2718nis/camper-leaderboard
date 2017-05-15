@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import timeago from 'timeago.js';
 import './CamperLeaderboard.css';
 
 class CamperLeaderboard extends Component {
@@ -107,7 +108,7 @@ class LeaderboardRow extends Component {
         </td>
         <td>{this.props.userInfo.alltime}</td>
         <td>{this.props.userInfo.recent}</td>
-        <td>{this.props.userInfo.lastUpdate}</td>
+        <td>{timeago().format(this.props.userInfo.lastUpdate)}</td>
       </tr>
     );
   }
