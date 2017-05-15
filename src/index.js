@@ -3,18 +3,27 @@ import ReactDOM from 'react-dom';
 import CamperLeaderboard from './CamperLeaderboard';
 import './index.css';
 
-getUsersInfo().then(function(usersInfo) {
-  ReactDOM.render(
-    <CamperLeaderboard usersInfo={usersInfo} />,
-    document.getElementById('root')
-  );
-}, function(err) {
-  console.log('Error: ' + err);
-  ReactDOM.render(
-    <CamperLeaderboard usersInfo={null} />,
-    document.getElementById('root')
-  );
-});
+renderPage();
+// Update each 10 minutes
+setInterval(function() {
+  console.log('Updated');
+  renderPage();
+}, 10 * 60 * 1000);
+
+function renderPage() {
+  getUsersInfo().then(function(usersInfo) {
+    ReactDOM.render(
+      <CamperLeaderboard usersInfo={usersInfo} />,
+      document.getElementById('root')
+    );
+  }, function(err) {
+    console.log('Error: ' + err);
+    ReactDOM.render(
+      <CamperLeaderboard usersInfo={null} />,
+      document.getElementById('root')
+    );
+  });
+}
 
 function getUsersInfo() {
   return new Promise(function(resolve, reject) {
