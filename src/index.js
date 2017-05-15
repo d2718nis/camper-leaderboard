@@ -39,9 +39,17 @@ function getAjax(resource) {
     xhttp.onreadystatechange = function() {
       if (this.readyState === 4) {
         if (this.status === 200) {
-          resolve(JSON.parse(this.responseText));
+          var response;
+          if (this.responseText) {
+            try {
+              response = JSON.parse(this.responseText);
+            } catch(e) {
+              reject('JSON parse error: ' + e);
+            }
+          }
+          resolve(response);
         } else {
-          reject(this.statusText);
+          reject('HTTP Error: ' + this.statusText);
         }
       }
     };
