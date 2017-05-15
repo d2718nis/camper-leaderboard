@@ -12,6 +12,15 @@ class CamperLeaderboard extends Component {
     };
   }
 
+  componentWillMount() {
+    this.setState({
+      leaderboard: {
+        allTime: this.props.usersInfo.allTime,
+        recent: this.props.usersInfo.recent
+      }
+    });
+  }
+
   render() {
     if (this.props.usersInfo === null) {
       return (
@@ -24,7 +33,7 @@ class CamperLeaderboard extends Component {
       return (
         <div className="CamperLeaderboard">
           <h1>Camper Leaderboard</h1>
-          <LeaderboardTable usersInfo={this.props.usersInfo.allTime} />
+          <LeaderboardTable usersInfo={this.state.leaderboard.allTime} />
         </div>
       );
     }
