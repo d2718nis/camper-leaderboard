@@ -8,7 +8,8 @@ class CamperLeaderboard extends Component {
       leaderboard: {
         allTime: null,
         recent: null
-      }
+      },
+      sortByAllTime: true
     };
   }
 
@@ -33,7 +34,9 @@ class CamperLeaderboard extends Component {
       return (
         <div className="CamperLeaderboard">
           <h1>Camper Leaderboard</h1>
-          <LeaderboardTable usersInfo={this.state.leaderboard.allTime} />
+          <LeaderboardTable
+            usersInfo={this.state.sortByAllTime ? this.state.leaderboard.allTime : this.state.leaderboard.recent}
+          />
         </div>
       );
     }
