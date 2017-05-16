@@ -10,7 +10,9 @@ class CamperLeaderboard extends Component {
         allTime: null,
         recent: null
       },
-      sortByAllTime: true
+      sortByAllTime: true,
+      sortAllTimeDesc: true,
+      sortRecentDesc: true
     };
   }
 
@@ -29,6 +31,16 @@ class CamperLeaderboard extends Component {
       this.setState({
         sortByAllTime: !this.state.sortByAllTime
       });
+    } else {
+      if (targetAllTime) {
+        this.setState({
+          sortAllTimeDesc: !this.state.sortAllTimeDesc
+        });
+      } else {
+        this.setState({
+          sortRecentDesc: !this.state.sortRecentDesc
+        });
+      }
     }
   }
 
@@ -51,6 +63,8 @@ class CamperLeaderboard extends Component {
               this.state.leaderboard.recent
             }
             sortByAllTime={this.state.sortByAllTime}
+            sortAllTimeDesc={this.state.sortAllTimeDesc}
+            sortRecentDesc={this.state.sortRecentDesc}
           />
         </div>
       );
@@ -67,13 +81,33 @@ class LeaderboardTable extends Component {
   }
 
   renderRow(i) {
-    return(
-      <LeaderboardRow
-        key={'row' + i}
-        rowNum={i+1}
-        userInfo={this.props.usersInfo[i]}
-      />
-    );
+    const filterValue = new RegExp(this.state.filterValue.toLowerCase());
+    const username = this.props.usersInfo[i].username.toLowerCase();
+    if (filterValue.test(username)) {
+      return(
+        <LeaderboardRow
+          key={'row' + i}
+          rowNum={i+1}
+          userInfo={this.props.usersInfo[i]}
+        />
+      );
+    }
+    return null;
+  }
+
+  renderTBody() {
+    let result = [];
+    if ((this.props.sortByAllTime && this.props.sortAllTimeDesc) ||
+      (!this.props.sortByAllTime && this.props.sortRecentDesc)) {
+      for (let i = 0; i < this.props.usersInfo.length; i++) {
+        result.push(this.renderRow(i));
+      }
+    } else {
+      for (let i = this.props.usersInfo.length - 1; i > -1; i--) {
+        result.push(this.renderRow(i));
+      }
+    }
+    return result;
   }
 
   handleFilter(val) {
@@ -101,27 +135,20 @@ class LeaderboardTable extends Component {
               </div>
             </td>
             <td className={this.props.sortByAllTime ? 'sort-by' : ''}>
-              <a href="#" onClick={() => this.props.onClick(true)}>All time&#8595;</a>
+              <a href="#" onClick={() => this.props.onClick(true)}>
+                {'All time' + (this.props.sortAllTimeDesc ? '↓' : '↑')}
+              </a>
             </td>
             <td className={this.props.sortByAllTime ? '' : 'sort-by'}>
-              <a href="#" onClick={() => this.props.onClick(false)}>Recent&#8595;</a>
+              <a href="#" onClick={() => this.props.onClick(false)}>
+                {'Recent' + (this.props.sortRecentDesc ? '↓' : '↑')}
+              </a>
             </td>
             <td>Last activity</td>
           </tr>
         </thead>
         <tbody>
-          {Array(this.props.usersInfo.length).fill(null).map((val, i) => {
-            if (this.state.filterValue.length > 0) {
-              const filterValue = new RegExp(this.state.filterValue.toLowerCase());
-              const username = this.props.usersInfo[i].username.toLowerCase();
-              if (filterValue.test(username)) {
-                return this.renderRow(i)
-              }
-            } else {
-              return this.renderRow(i);
-            }
-            return null;
-          })}
+          {this.renderTBody()}
         </tbody>
       </table>
     );
