@@ -90,12 +90,15 @@ class LeaderboardTable extends Component {
             <td>#</td>
             <td>Picture</td>
             <td>
-              <input
-                name="name-search"
-                placeholder="Name"
-                onChange={(e) => this.handleFilter(e.target.value)}
-                type="text"
-              />
+              <div className="filter-container">
+                <input
+                  name="name-search"
+                  placeholder="Name"
+                  onChange={(e) => this.handleFilter(e.target.value)}
+                  type="text"
+                />
+                <span className="icon-search"></span>
+              </div>
             </td>
             <td className={this.props.sortByAllTime ? 'sort-by' : ''}>
               <a href="#" onClick={() => this.props.onClick(true)}>All time&#8595;</a>
