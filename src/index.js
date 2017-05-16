@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CamperLeaderboard from './CamperLeaderboard';
+import { getAjax } from './utils.js';
 import './index.css';
 
 renderPage();
@@ -39,30 +40,5 @@ function getUsersInfo() {
     }, function(err) {
       reject(err);
     });
-  });
-}
-
-function getAjax(resource) {
-  return new Promise(function(resolve, reject) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState === 4) {
-        if (this.status === 200) {
-          var response;
-          if (this.responseText) {
-            try {
-              response = JSON.parse(this.responseText);
-            } catch(e) {
-              reject('JSON parse error: ' + e);
-            }
-          }
-          resolve(response);
-        } else {
-          reject('HTTP Error: ' + this.statusText);
-        }
-      }
-    };
-    xhttp.open('GET', resource, true);
-    xhttp.send();
   });
 }
