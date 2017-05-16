@@ -59,6 +59,13 @@ class CamperLeaderboard extends Component {
 }
 
 class LeaderboardTable extends Component {
+  constructor() {
+    super();
+    this.state = {
+      filterValue: ''
+    }
+  }
+
   renderRow(i) {
     return(
       <LeaderboardRow
@@ -69,6 +76,12 @@ class LeaderboardTable extends Component {
     );
   }
 
+  handleFilter(val) {
+    this.setState({
+      filterValue: val
+    });
+  }
+
   render() {
     return (
       <table>
@@ -76,7 +89,14 @@ class LeaderboardTable extends Component {
           <tr>
             <td>#</td>
             <td>Picture</td>
-            <td>Name</td>
+            <td>
+              <input
+                name="name-search"
+                placeholder="Name"
+                onChange={(e) => this.handleFilter(e.target.value)}
+                type="text"
+              />
+            </td>
             <td className={this.props.sortByAllTime ? 'sort-by' : ''}>
               <a href="#" onClick={() => this.props.onClick(true)}>All time&#8595;</a>
             </td>
@@ -87,7 +107,18 @@ class LeaderboardTable extends Component {
           </tr>
         </thead>
         <tbody>
-          {Array(this.props.usersInfo.length).fill(null).map((val, i) => this.renderRow(i))}
+          {Array(this.props.usersInfo.length).fill(null).map((val, i) => {
+            if (this.state.filterValue.length > 0) {
+              const filterValue = new RegExp(this.state.filterValue.toLowerCase());
+              const username = this.props.usersInfo[i].username.toLowerCase();
+              if (filterValue.test(username)) {
+                return this.renderRow(i)
+              }
+            } else {
+              return this.renderRow(i);
+            }
+            return null;
+          })}
         </tbody>
       </table>
     );
