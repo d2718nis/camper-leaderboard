@@ -71,6 +71,9 @@ class CamperLeaderboard extends Component {
               sortRecentDesc={this.state.sortRecentDesc}
             />
           </div>
+          <div className="CamperLeaderboardBottom credits">
+            <a className="credits-link" href="https://d2718nis.github.io" target="_blank">May 2017 by Denis Z.</a>
+          </div>
         </div>
       );
     }

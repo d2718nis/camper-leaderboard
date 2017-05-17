@@ -9,6 +9,7 @@ $green-text: $green-background - #0f0f0f;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background-color: #fff;
   box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .CamperLeaderboardHead {
@@ -119,6 +120,26 @@ $green-text: $green-background - #0f0f0f;
         color: #bbb;
         font-size: 12px;
       }
+    }
+  }
+}
+
+.CamperLeaderboardBottom {
+  margin-top: 25px;
+  background-color: $green-background;
+  border-bottom: 3px solid $green-text;
+  box-shadow: 0 2px 9px -1px rgba(0,0,0,0.10), 0 2px 6px -1px rgba(0,0,0,0.20);
+  .credits-link {
+    font-size: 12px;
+    text-decoration: none;
+    color: #ddd;
+    transition: color 0.3s ease;
+    &:active,
+    &:visited {
+      color: #ddd;
+    }
+    &:hover {
+      color: #fff;
     }
   }
 }
