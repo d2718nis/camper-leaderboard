@@ -1,12 +1,18 @@
 .CamperLeaderboardContainer {
-  width: 50vw;
+  width: 100vw;
   margin: auto;
-  margin-top: 20px;
   text-align: center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background-color: #fff;
-  box-sizing: border-box;
-  margin-bottom: 20px; }
+  box-sizing: border-box; }
+  @media screen and (min-width: 1024px) {
+    .CamperLeaderboardContainer {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 60vw; } }
+  @media screen and (min-width: 2560px) {
+    .CamperLeaderboardContainer {
+      width: 35vw; } }
 
 .CamperLeaderboardHead {
   border-top: 15px solid #00ab50;
@@ -35,6 +41,8 @@
     box-sizing: border-box; }
     .CamperLeaderboardBody table td {
       padding: 5px;
+      padding-left: 3px;
+      padding-right: 3px;
       border-bottom: 1px solid #eee;
       vertical-align: middle;
       box-sizing: border-box; }
@@ -64,35 +72,78 @@
         float: left;
         width: 30%; }
       .CamperLeaderboardBody table thead td {
-        border-bottom: 1px solid #ddd; }
-      .CamperLeaderboardBody table thead td:nth-child(1) {
-        width: 10%;
+        border-bottom: 1px solid #ddd;
         padding-top: 10px;
         padding-bottom: 10px; }
+      .CamperLeaderboardBody table thead td:nth-child(1) {
+        width: 9%;
+        padding-left: 0;
+        padding-right: 0; }
+        @media screen and (min-width: 425px) {
+          .CamperLeaderboardBody table thead td:nth-child(1) {
+            width: 10%; } }
       .CamperLeaderboardBody table thead td:nth-child(2) {
-        width: 10%; }
+        width: 15%;
+        display: none; }
+        @media screen and (min-width: 425px) {
+          .CamperLeaderboardBody table thead td:nth-child(2) {
+            display: table-cell; } }
       .CamperLeaderboardBody table thead td:nth-child(3) {
-        width: 30%; }
+        width: 41%; }
+        @media screen and (min-width: 425px) {
+          .CamperLeaderboardBody table thead td:nth-child(3) {
+            width: 35%; } }
+        @media screen and (min-width: 768px) {
+          .CamperLeaderboardBody table thead td:nth-child(3) {
+            width: 30%; } }
       .CamperLeaderboardBody table thead td:nth-child(4) {
-        width: 15%;
+        width: 28%;
         padding-left: 10px; }
+        @media screen and (min-width: 425px) {
+          .CamperLeaderboardBody table thead td:nth-child(4) {
+            width: 20%; } }
+        @media screen and (min-width: 768px) {
+          .CamperLeaderboardBody table thead td:nth-child(4) {
+            width: 15%; } }
       .CamperLeaderboardBody table thead td:nth-child(5) {
-        width: 15%;
+        width: 22%;
         padding-left: 10px; }
+        @media screen and (min-width: 425px) {
+          .CamperLeaderboardBody table thead td:nth-child(5) {
+            width: 20%; } }
+        @media screen and (min-width: 768px) {
+          .CamperLeaderboardBody table thead td:nth-child(5) {
+            width: 15%; } }
       .CamperLeaderboardBody table thead td:nth-child(6) {
-        width: 20%; }
+        display: none; }
+        @media screen and (min-width: 768px) {
+          .CamperLeaderboardBody table thead td:nth-child(6) {
+            display: table-cell;
+            width: 15%; } }
       .CamperLeaderboardBody table thead .sort-by {
         border-bottom: 2px solid #00ab50;
-        padding-top: 6px; }
+        padding-top: 11px; }
     .CamperLeaderboardBody table tbody {
       font-size: 14px; }
       .CamperLeaderboardBody table tbody img {
         width: 40px;
         border-radius: 50%;
         vertical-align: middle; }
+      .CamperLeaderboardBody table tbody tr {
+        height: 51px; }
+      .CamperLeaderboardBody table tbody td:nth-child(2) {
+        width: 10%;
+        display: none; }
+        @media screen and (min-width: 425px) {
+          .CamperLeaderboardBody table tbody td:nth-child(2) {
+            display: table-cell; } }
       .CamperLeaderboardBody table tbody td:nth-child(6) {
         color: #bbb;
-        font-size: 12px; }
+        font-size: 12px;
+        display: none; }
+        @media screen and (min-width: 768px) {
+          .CamperLeaderboardBody table tbody td:nth-child(6) {
+            display: table-cell; } }
 
 .CamperLeaderboardBottom {
   margin-top: 25px;
