@@ -97,20 +97,10 @@ class LeaderboardTable extends Component {
           key={'row' + i}
           rowNum={i+1}
           userInfo={this.props.usersInfo[i]}
-          onClick={() => this.showMoreUserInfo(this.props.usersInfo[i].username)}
         />
       );
     }
     return null;
-  }
-
-  showMoreUserInfo(username) {
-    console.log('Loading ' + username + ' info...');
-    parseUserInfo(username).then(function(userInfo) {
-      console.log(JSON.stringify(userInfo));
-    }, function(err) {
-      console.log('DOMParse error: ' + err);
-    })
   }
 
   renderTBody() {
@@ -174,9 +164,40 @@ class LeaderboardTable extends Component {
 }
 
 class LeaderboardRow extends Component {
+  showMoreUserInfo(username, row) {
+
+    console.log('Loading ' + username + ' info...');
+    parseUserInfo(username).then(function(userInfo) {
+      console.log(JSON.stringify(userInfo));
+
+      var el = document.getElementById('more-info');
+      if (el !== null) {
+        var tr = el.parentElement;
+        var table = tr.parentElement;
+        table.removeChild(tr);
+      }
+
+      var newElement = document.createElement('tr');
+      row.parentNode.insertBefore(newElement, row.nextSibling);
+      newElement.innerHTML = `<td id="more-info" style="word-break: break-all;" colspan="6">
+        <div id="more-info-div" style="height: 0px; overflow: hidden; transition: height 1s;">
+          
+        </div>
+      </td>`;
+      console.log(document.getElementById('more-info-div').style.height)
+      document.getElementById('more-info-div').style.height = 'auto';
+      document.getElementById('more-info-div').innerHTML = JSON.stringify(userInfo);
+      
+      console.log(document.getElementById('more-info-div').style.height)
+
+    }, function(err) {
+      console.log('DOMParse error: ' + err);
+    })
+  }
+
   render() {
     return(
-      <tr onClick={() => this.props.onClick()}>
+      <tr onClick={(e) => this.showMoreUserInfo(this.props.userInfo.username, e.target.parentElement)}>
         <td>{this.props.rowNum}</td>
         <td>
           <img alt={this.props.userInfo.username + ' profile Image'} src={this.props.userInfo.img} />
