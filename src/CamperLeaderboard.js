@@ -48,25 +48,29 @@ class CamperLeaderboard extends Component {
   render() {
     if (this.props.usersInfo === null) {
       return (
-        <div className="CamperLeaderboard">
+        <div className="CamperLeaderboardContainer">
           <h1>Camper Leaderboard</h1>
           <p>An error occured</p>
         </div>
       );
     } else {
       return (
-        <div className="CamperLeaderboard">
-          <h1>Camper Leaderboard</h1>
-          <LeaderboardTable
-            onClick={(targetAllTime) => this.handleClick(targetAllTime)}
-            usersInfo={this.state.sortByAllTime ?
-              this.state.leaderboard.allTime :
-              this.state.leaderboard.recent
-            }
-            sortByAllTime={this.state.sortByAllTime}
-            sortAllTimeDesc={this.state.sortAllTimeDesc}
-            sortRecentDesc={this.state.sortRecentDesc}
-          />
+        <div className="CamperLeaderboardContainer">
+          <div className="CamperLeaderboardHead">
+            <h1>Camper Leaderboard</h1>
+          </div>
+          <div className="CamperLeaderboardBody">
+            <LeaderboardTable
+              onClick={(targetAllTime) => this.handleClick(targetAllTime)}
+              usersInfo={this.state.sortByAllTime ?
+                this.state.leaderboard.allTime :
+                this.state.leaderboard.recent
+              }
+              sortByAllTime={this.state.sortByAllTime}
+              sortAllTimeDesc={this.state.sortAllTimeDesc}
+              sortRecentDesc={this.state.sortRecentDesc}
+            />
+          </div>
         </div>
       );
     }
