@@ -164,40 +164,60 @@ class LeaderboardTable extends Component {
 }
 
 class LeaderboardRow extends Component {
-  showMoreUserInfo(username, row) {
+  showMoreUserInfo(username, image, target) {
 
-    console.log('Loading ' + username + ' info...');
-    parseUserInfo(username).then(function(userInfo) {
-      console.log(JSON.stringify(userInfo));
+    let row = target;
+    while (row.tagName !== 'TR') {
+      row = row.parentElement;
+    }
 
-      var el = document.getElementById('more-info');
-      if (el !== null) {
-        var tr = el.parentElement;
-        var table = tr.parentElement;
-        table.removeChild(tr);
+    var el = document.getElementById('more-info');
+    if (el !== null) {
+      var tr = el.parentElement;
+      var table = tr.parentElement;
+      table.removeChild(tr);
+    }
+
+    var newElement = document.createElement('tr');
+    row.parentNode.insertBefore(newElement, row.nextSibling);
+    newElement.innerHTML = `<td id="more-info" style="word-break: break-all;" colspan="6">
+      <div id="more-info-div" style="overflow: hidden; transition: height 1s;">
+        Loading...
+      </div>
+    </td>`;
+
+    parseUserInfo(username).then(function(json) {
+      let html = '<div  class="more-info-top">';
+      html += '<img class="more-info-image" alt="' + username + ' profile Image" src="' + image + '" /><br>';
+      html += '<span class="more-info-name">' + (json.realName ? json.realName : username) + '</span>';
+      html += json.location ? ' <span class="more-info-location">' + json.location + '</span>' : '';
+      html += '<br>';
+      for (let key in json.socialLinks) {
+        html += '<a class="social-' + key + '" href="' + json.socialLinks[key] + '" target="_blank">' + key + '</a> ';
+      }
+      html += json.bio ? '<br><div class="more-info-bio"><hr>' + json.bio + '<hr></div>' : '';
+      html += json.longestStreak ? '<br>' + json.longestStreak : '';
+      html += json.currentStreak ? '<br>' + json.currentStreak : '';
+      if (json.projects.length > 0) {
+        html += '<br><br>'
+        for (let i = 0; i < json.projects.length; i++) {
+          html += json.projects[i].link ? '<a href="' + json.projects[i].link + '" target="_blank">' + json.projects[i].title + '</a><br>' : '';
+        }
       }
 
-      var newElement = document.createElement('tr');
-      row.parentNode.insertBefore(newElement, row.nextSibling);
-      newElement.innerHTML = `<td id="more-info" style="word-break: break-all;" colspan="6">
-        <div id="more-info-div" style="height: 0px; overflow: hidden; transition: height 1s;">
-          
-        </div>
-      </td>`;
-      console.log(document.getElementById('more-info-div').style.height)
-      document.getElementById('more-info-div').style.height = 'auto';
-      document.getElementById('more-info-div').innerHTML = JSON.stringify(userInfo);
-      
-      console.log(document.getElementById('more-info-div').style.height)
+      html += '</div>';
+
+      document.getElementById('more-info-div').innerHTML = html;
 
     }, function(err) {
       console.log('DOMParse error: ' + err);
+      document.getElementById('more-info-div').innerHTML = 'Something went wrong';
     })
   }
 
   render() {
     return(
-      <tr onClick={(e) => this.showMoreUserInfo(this.props.userInfo.username, e.target.parentElement)}>
+      <tr onClick={(e) => this.showMoreUserInfo(this.props.userInfo.username, this.props.userInfo.img, e.target)}>
         <td>{this.props.rowNum}</td>
         <td>
           <img alt={this.props.userInfo.username + ' profile Image'} src={this.props.userInfo.img} />

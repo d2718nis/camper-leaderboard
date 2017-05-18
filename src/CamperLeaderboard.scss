@@ -179,6 +179,73 @@ $four-k-width: 2560px;
           display: table-cell;
         }
       }
+      .more-info-top {
+        padding: 10px;
+        padding-left: 5%;
+        padding-right: 5%;
+        // text-align: left;
+      }
+
+      .more-info-image {
+        width: 150px;
+        border-radius: 0;
+      }
+
+      .more-info-name {
+        font-size: 20px;
+      }
+      .more-info-location {
+        color: #bbb;
+        font-size: 14px;
+      }
+
+
+      .more-info-bio {
+        max-width: 50%;
+        margin: auto;
+        margin-top: 20px;
+        hr {
+          border: none;
+          background-color: #ccc;
+          height: 1px;
+          max-width: 50%;
+        }
+      }
+
+      .social-twitter {
+        color: #fff;
+        display: inline-block;
+        // float: left;
+        padding: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: #1da1f2;
+        border-radius: 2px;
+        margin-right: 2px;
+      }
+      .social-github {
+        color: #fff;
+        display: inline-block;
+        // float: left;
+        padding: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: #24292e;
+        border-radius: 2px;
+        margin-right: 2px;
+        
+      }
+      .social-linkedIn {
+        color: #fff;
+        display: inline-block;
+        // float: left;
+        padding: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: #007bb6;
+        border-radius: 2px;
+        margin-right: 2px;
+      }
     }
   }
 }

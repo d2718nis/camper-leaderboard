@@ -144,6 +144,54 @@
         @media screen and (min-width: 768px) {
           .CamperLeaderboardBody table tbody td:nth-child(6) {
             display: table-cell; } }
+      .CamperLeaderboardBody table tbody .more-info-top {
+        padding: 10px;
+        padding-left: 5%;
+        padding-right: 5%; }
+      .CamperLeaderboardBody table tbody .more-info-image {
+        width: 150px;
+        border-radius: 0; }
+      .CamperLeaderboardBody table tbody .more-info-name {
+        font-size: 20px; }
+      .CamperLeaderboardBody table tbody .more-info-location {
+        color: #bbb;
+        font-size: 14px; }
+      .CamperLeaderboardBody table tbody .more-info-bio {
+        max-width: 50%;
+        margin: auto;
+        margin-top: 20px; }
+        .CamperLeaderboardBody table tbody .more-info-bio hr {
+          border: none;
+          background-color: #ccc;
+          height: 1px;
+          max-width: 50%; }
+      .CamperLeaderboardBody table tbody .social-twitter {
+        color: #fff;
+        display: inline-block;
+        padding: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: #1da1f2;
+        border-radius: 2px;
+        margin-right: 2px; }
+      .CamperLeaderboardBody table tbody .social-github {
+        color: #fff;
+        display: inline-block;
+        padding: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: #24292e;
+        border-radius: 2px;
+        margin-right: 2px; }
+      .CamperLeaderboardBody table tbody .social-linkedIn {
+        color: #fff;
+        display: inline-block;
+        padding: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: #007bb6;
+        border-radius: 2px;
+        margin-right: 2px; }
 
 .CamperLeaderboardBottom {
   padding: 2px; }
