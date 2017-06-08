@@ -3,6 +3,7 @@ Camper Leaderboard
 
 React.js camper leaderboard web application for the [freecodecamp](https://www.freecodecamp.com) challenge.
 * Github pages: https://d2718nis.github.io/camper-leaderboard
+* Codepen.io: https://codepen.io/d2718nis/full/eRpRGo
 
 ![Camper Leaderboard](https://d2718nis.github.io/img/portfolio11.png "Camper Leaderboard")
 
