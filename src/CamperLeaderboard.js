@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import timeago from 'timeago.js';
-import { parseUserInfo } from './utils.js';
 import './CamperLeaderboard.css';
 
 class CamperLeaderboard extends Component {
@@ -97,20 +96,10 @@ class LeaderboardTable extends Component {
           key={'row' + i}
           rowNum={i+1}
           userInfo={this.props.usersInfo[i]}
-          onClick={() => this.showMoreUserInfo(this.props.usersInfo[i].username)}
         />
       );
     }
     return null;
-  }
-
-  showMoreUserInfo(username) {
-    console.log('Loading ' + username + ' info...');
-    parseUserInfo(username).then(function(userInfo) {
-      console.log(JSON.stringify(userInfo));
-    }, function(err) {
-      console.log('DOMParse error: ' + err);
-    })
   }
 
   renderTBody() {
@@ -176,7 +165,7 @@ class LeaderboardTable extends Component {
 class LeaderboardRow extends Component {
   render() {
     return(
-      <tr onClick={() => this.props.onClick()}>
+      <tr>
         <td>{this.props.rowNum}</td>
         <td>
           <img alt={this.props.userInfo.username + ' profile Image'} src={this.props.userInfo.img} />
