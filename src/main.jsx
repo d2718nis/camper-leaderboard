@@ -1,27 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import CamperLeaderboard from './CamperLeaderboard';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import CamperLeaderboard from './CamperLeaderboard.jsx';
 import { getAjax } from './utils.js';
 import './index.css';
 
 renderPage();
 // Update each 10 minutes
 setInterval(function() {
-  console.log('Updated');
   renderPage();
 }, 10 * 60 * 1000);
 
 function renderPage() {
+  const root = document.getElementById('root');
   getUsersInfo().then(function(usersInfo) {
-    ReactDOM.render(
-      <CamperLeaderboard usersInfo={usersInfo} />,
-      document.getElementById('root')
+    createRoot(root).render(
+      <CamperLeaderboard usersInfo={usersInfo} />
     );
   }, function(err) {
     console.log('Error: ' + err);
-    ReactDOM.render(
-      <CamperLeaderboard usersInfo={null} />,
-      document.getElementById('root')
+    createRoot(root).render(
+      <CamperLeaderboard usersInfo={null} />
     );
   });
 }
