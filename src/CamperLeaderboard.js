@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import timeago from 'timeago.js';
+import { format } from 'timeago.js';
 import './CamperLeaderboard.css';
 
 class CamperLeaderboard extends Component {
@@ -17,12 +17,14 @@ class CamperLeaderboard extends Component {
   }
 
   componentWillMount() {
-    this.setState({
-      leaderboard: {
-        allTime: this.props.usersInfo.allTime,
-        recent: this.props.usersInfo.recent
-      }
-    });
+    if (this.props.usersInfo !== null) {
+      this.setState({
+        leaderboard: {
+          allTime: this.props.usersInfo.allTime,
+          recent: this.props.usersInfo.recent
+        }
+      });
+    }
   }
 
   handleClick(targetAllTime) {
@@ -177,7 +179,7 @@ class LeaderboardRow extends Component {
         </td>
         <td>{this.props.userInfo.alltime}</td>
         <td>{this.props.userInfo.recent}</td>
-        <td>{timeago().format(this.props.userInfo.lastUpdate)}</td>
+        <td>{format(this.props.userInfo.lastUpdate)}</td>
       </tr>
     );
   }
