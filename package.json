@@ -6,7 +6,7 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "timeago.js": "^4.0.2"
+    "react-timeago": "^7.2.0"
   },
   "devDependencies": {
     "gh-pages": "^6.2.0",
